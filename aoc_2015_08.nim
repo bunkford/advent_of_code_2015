@@ -13,4 +13,4 @@ proc solve2(input:seq[string]):int =
       inc(result, line.escapeJSON.len - line.len)
 
 echo "Part 1 answer: ", solve1(input("./aoc_2015_08.txt")) 
-echo "Part 2 answer: ", solve2(input("./aoc_2015_08.txt")) # 1900 too low
+echo "Part 2 answer: ", solve2(input("./aoc_2015_08.txt"))
