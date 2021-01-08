@@ -18,10 +18,23 @@ proc solve1(molecules:seq[(string, string)], medicine: string): int =
       sub[last .. last + m[0].len - 1] = m[1]
       combinations.add(sub)
       inc(last)
-      
+
   return combinations.deduplicate().len
 
+
+
+proc solve2(medicine: string): int =
+  # https://www.reddit.com/r/adventofcode/comments/3xflz8/day_19_solutions/cy4etju/
+  var n: int
+  for c in medicine:
+    if c.isUpperAscii: inc n
+  let numOfRn = medicine.count("Rn")
+  let numOfY = medicine.count('Y')
+
+  return(n - 2*numOfRn - 2*numOfY - 1)
+
 echo "Answer Part 1: ", solve1(molecules, medicine)
+echo "Answer Part 2: ", solve2(medicine)
 
 
 
