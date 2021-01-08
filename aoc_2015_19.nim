@@ -23,7 +23,16 @@ proc solve1(molecules:seq[(string, string)], medicine: string): int =
 
 
 
-proc solve2(medicine: string): int =
+proc solve2(molecules:seq[(string, string)], medicine: string): int =
+  var target = medicine
+  while target != "e":
+    for m in molecules:
+      var pos = target.find(m[1])
+      if pos != -1:
+        inc(result)
+        target[pos .. pos + m[1].len - 1] = m[0]
+
+proc test2(medicine: string): int =
   # https://www.reddit.com/r/adventofcode/comments/3xflz8/day_19_solutions/cy4etju/
   var n: int
   for c in medicine:
@@ -34,7 +43,9 @@ proc solve2(medicine: string): int =
   return(n - 2*numOfRn - 2*numOfY - 1)
 
 echo "Answer Part 1: ", solve1(molecules, medicine)
-echo "Answer Part 2: ", solve2(medicine)
+echo "Answer Part 2: ", solve2(molecules, medicine)
+echo "Answer Part 2 (alternate): ", test2(medicine)
+
 
 
 
